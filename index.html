@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>لعبة النرد</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!--  واجهة تعيين النقاط المستهدفة وأسماء اللاعبين-->
+        <div id="startInterface">
+            <div id="setWinningScoreInterface" class="input-container">
+                <label for="winningScore">النقاط المستهدفة:</label>
+                <input type="number" id="winningScore" placeholder="أدخل النقاط المستهدفة">
+                <p class="error-message" id="winningScoreError">الرجاء ملء هذا الحقل</p>
+            </div>
+            <div id="setPlayerNames" class="input-container">
+                <label for="playerOneName">اللاعب الأول:</label>
+                <input type="text" id="playerOneName" placeholder="أدخل اسم اللاعب الأول">
+                <p class="error-message" id="playerOneNameError">الرجاء ملء هذا الحقل</p>
+                <label for="playerTwoName">اللاعب الثاني:</label>
+                <input type="text" id="playerTwoName" placeholder="أدخل اسم اللاعب الثاني">
+                <p class="error-message" id="playerTwoNameError">الرجاء ملء هذا الحقل</p>
+            </div>
+            <button class="btn btn-primary" id="submitButton" onclick="setWinningScore()">اعتماد</button>
+        </div>
+
+        <!-- واجهة اللعبة -->
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-md-12">
+                <span id="winningScoreDisplay" style="display: none;">النقاط المستهدفة: <span id="winningScoreValue"></span></span>
+            </div>
+        </div>
+        <div id="gameInterface" style="display: none;">
+            <div class="row">
+                <div class="col-md-6 player active" id="player1">
+                    <h2>Player 1 <span id="player1Name"></span></h2>
+                    <p>مجموع النقاط: <span id="player1Score">0</span></p>
+                    <p>النتيجة الحالية: <span id="player1Current">0</span></p>
+                    <div class="btn-group"> 
+                        <button class="btn btn-primary" onclick="rollDice('player1')">رمي النرد</button>
+                        <button class="btn btn-success" onclick="hold('player1')">انتظار</button>
+                    </div>
+                </div>
+                <div class="col-md-6 player" id="player2">
+                    <h2>Player 2 <span id="player2Name"></span></h2>
+                    <p>مجموع النقاط: <span id="player2Score">0</span></p>
+                    <p>النتيجة الحالية: <span id="player2Current">0</span></p>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="rollDice('player2')">رمي النرد</button>
+                        <button class="btn btn-success" onclick="hold('player2')">انتظار</button>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-danger mt-3" onclick="startNewGame()" id="newGameButton" style="display: none;">لعبة جديدة</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <img id="dice" src="img/dice1.png" width="170" height="170">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div id="winningMessage" style="display: none;">!لقد فاز اللاعب</div>
+                    <img id="winningEffect" src="img/winer.gif" alt="تأثير الفوز" style="display: none; margin: auto;">
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
